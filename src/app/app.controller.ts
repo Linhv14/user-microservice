@@ -13,8 +13,13 @@ export class AppController {
     return await this.appService.findById(parseInt(ID))
   }
 
-  @EventPattern('user.create-profile')
-  async createProfile(@Payload(ValidationPipe) user: CraeteProfileDTO) {
-    return await this.appService.createProfile(user)
+  // @EventPattern('user.create-profile')
+  // async createProfile(@Payload(ValidationPipe) user: CraeteProfileDTO) {
+  //   return await this.appService.update(user)
+  // }
+
+  @EventPattern('user.update')
+  async update(@Payload(ValidationPipe) user: any) {
+    return await this.appService.update(user)
   }
 }

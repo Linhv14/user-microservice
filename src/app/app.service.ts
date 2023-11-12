@@ -13,8 +13,8 @@ export class AppService {
     return user
   }
 
-  async createProfile(user: CraeteProfileDTO) {
+  async update(user: any) {
     const {ID, ...data} = user
-    return await this.userRepository.updateMany({ID: parseInt(ID)}, data)
+    return await this.userRepository.updateMany({ID}, data)
   }
 }
