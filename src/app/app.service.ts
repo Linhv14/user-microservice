@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { UsersRepository } from './user.repository';
-import { CraeteProfileDTO } from '../../shared/user.dto';
 
 @Injectable()
 export class AppService {

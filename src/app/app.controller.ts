@@ -1,7 +1,6 @@
 import { Controller, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
-import { CraeteProfileDTO } from '../../shared/user.dto';
 
 @Controller()
 export class AppController {
@@ -12,11 +11,6 @@ export class AppController {
     console.log(ID)
     return await this.appService.findById(parseInt(ID))
   }
-
-  // @EventPattern('user.create-profile')
-  // async createProfile(@Payload(ValidationPipe) user: CraeteProfileDTO) {
-  //   return await this.appService.update(user)
-  // }
 
   @EventPattern('user.update')
   async update(@Payload(ValidationPipe) user: any) {
