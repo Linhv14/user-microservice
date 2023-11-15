@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { UsersRepository } from './user.repository';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class AppService {
   private readonly logger = new Logger(AppService.name);
-  constructor(private readonly userRepository: UsersRepository) { }
+  constructor(private readonly userRepository: UserRepository) { }
 
   async findById(ID: number) {
     this.logger.log("Find By ID:::::", ID)

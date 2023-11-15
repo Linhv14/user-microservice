@@ -107,7 +107,9 @@ model Post {
   id        Int     @id @default(autoincrement())
   user      User    @relation(fields: [userID], references: [ID])
   userID    Int     @unique
-  address   String
+  address   String?
+  long      Float?
+  lat       Float?
   service   Service @relation(fields: [serviceID], references: [ID])
   serviceID Int     @unique
   content   String
