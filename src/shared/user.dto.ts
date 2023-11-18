@@ -1,24 +1,8 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsPhoneNumber, IsString } from 'class-validator';
-
 export class CraeteProfileDTO {
-    @IsNotEmpty()
-    ID: string
-
-    @IsString()
-    @IsNotEmpty()
+    ID?: number
     name: string
-
-    @IsString()
-    @IsNotEmpty()
     phoneNumber: string
-
-    @IsNumber()
-    @IsOptional()
-    age: number
-
-    @IsOptional()
-    avatar: string
-
-    @IsNotEmpty()
+    age?: number
+    avatar?: string
     defaultAddress: string
 }

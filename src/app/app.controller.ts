@@ -7,9 +7,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern('user.find-id')
-  async findById(@Payload(ValidationPipe) ID: string) {
-    console.log(ID)
-    return await this.appService.findById(parseInt(ID))
+  async findById(@Payload(ValidationPipe) {ID}: {ID: number}) {
+    return await this.appService.findById(ID)
   }
 
   @EventPattern('user.update')
