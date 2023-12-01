@@ -6,3 +6,8 @@ export class CraeteProfileDTO {
     avatar?: string
     defaultAddress: string
 }
+
+export class OptionsDTO {
+    orderBy?: {}
+    take?: number
+}

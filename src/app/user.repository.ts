@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { type Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { OptionsDTO } from 'src/shared/user.dto';
 
 
 @Injectable()
@@ -14,11 +15,6 @@ export class UserRepository {
   }
 
   async update(where: Prisma.UserWhereUniqueInput, data: Prisma.UserUpdateInput) {
-    const user = await this.prismaService.user.update({ where, data })
-    return this._exclude(user, ['password'])
-  }
-
-  async updateMany(where: Prisma.UserWhereUniqueInput, data: Prisma.UserUpdateInput) {
     const user = await this.prismaService.user.update({ where, data })
     return this._exclude(user, ['password'])
   }
@@ -39,9 +35,10 @@ export class UserRepository {
   }
 
 
-  async findAll() {
-    const user = await this.prismaService.user.findMany()
-    return this._exclude(user, ['password'])
+  async findAll(options: OptionsDTO) {
+    console.log(options)
+    const users = await this.prismaService.user.findMany(options)
+    return this._exclude(users, ['password'])
   }
 
   async findMany(where: Prisma.UserWhereInput) {

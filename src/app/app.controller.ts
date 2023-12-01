@@ -1,6 +1,7 @@
 import { Controller, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
+import { OptionsDTO } from 'src/shared/user.dto';
 
 @Controller()
 export class AppController {
@@ -9,6 +10,12 @@ export class AppController {
   @MessagePattern('user.find-id')
   async findById(@Payload(ValidationPipe) {ID}: {ID: number}) {
     return await this.appService.findById(ID)
+  }
+
+  @MessagePattern('user.get-all')
+  async getAllUsers(@Payload(ValidationPipe) options: OptionsDTO) {
+    console.log(options)
+    return await this.appService.getAllUsers(options)
   }
 
   @EventPattern('user.update')

@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { UserRepository } from './user.repository';
+import { OptionsDTO } from 'src/shared/user.dto';
 
 @Injectable()
 export class AppService {
@@ -12,8 +13,14 @@ export class AppService {
     return user
   }
 
+  async getAllUsers(options: OptionsDTO) {
+    this.logger.log("Getting all user:::::")
+    const users = await this.userRepository.findAll(options)
+    return users
+  }
+
   async update(user: any) {
     const { ID, ...data } = user
-    return await this.userRepository.updateMany({ ID }, data)
+    return await this.userRepository.update({ ID }, data)
   }
 }
