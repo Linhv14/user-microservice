@@ -6,6 +6,7 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app/app.module';
+import { Logger } from '@nestjs/common';
 
 
 async function bootstrap() {
@@ -13,7 +14,6 @@ async function bootstrap() {
     AppModule,
     {
       transport: Transport.KAFKA,
-
       options: {
         client: {
           brokers: ['localhost:9092'],
@@ -26,6 +26,9 @@ async function bootstrap() {
   );
 
   await app.listen();
+  Logger.log(
+    `User microservice is running`
+  );
 }
 
 bootstrap();

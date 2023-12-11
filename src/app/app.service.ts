@@ -1,11 +1,11 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger} from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { OptionsDTO } from 'src/shared/user.dto';
 
 @Injectable()
 export class AppService {
   private readonly logger = new Logger(AppService.name);
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepository,) { }
 
   async findById(ID: number) {
     this.logger.log("Find By ID:::::", ID)
@@ -23,4 +23,9 @@ export class AppService {
     const { ID, ...data } = user
     return await this.userRepository.update({ ID }, data)
   }
+
+  async findNearBy() {
+    console.log("service: finding")
+  }
+
 }

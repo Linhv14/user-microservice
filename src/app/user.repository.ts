@@ -34,11 +34,23 @@ export class UserRepository {
     return this._exclude(user, [field])
   }
 
-
   async findAll(options: OptionsDTO) {
     console.log(options)
-    const users = await this.prismaService.user.findMany(options)
-    return this._exclude(users, ['password'])
+    // const users = await this.prismaService.user.findMany(options)
+    // return this._exclude(users, ['password'])
+    const [count, items] = await this.prismaService.$transaction([
+      this.prismaService.user.count(),
+      this.prismaService.user.findMany({
+        take: options.take,
+        skip: options.skip,
+        orderBy: options.orderBy
+      }),
+    ]);
+ 
+    return {
+      count,
+      items,
+    };
   }
 
   async findMany(where: Prisma.UserWhereInput) {

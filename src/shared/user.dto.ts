@@ -8,6 +8,7 @@ export class CraeteProfileDTO {
 }
 
 export class OptionsDTO {
-    orderBy?: {}
     take?: number
+    skip?: number
+    orderBy?: {}
 }

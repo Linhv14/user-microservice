@@ -18,6 +18,12 @@ export class AppController {
     return await this.appService.getAllUsers(options)
   }
 
+  @MessagePattern('user.find-nearby')
+  async findNearBy() {
+    console.log("finding nearby")
+    return await this.appService.findNearBy()
+  }
+
   @EventPattern('user.update')
   async update(@Payload(ValidationPipe) user: any) {
     return await this.appService.update(user)

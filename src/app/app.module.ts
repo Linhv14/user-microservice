@@ -6,7 +6,9 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 import { UserRepository } from './user.repository';
 
 @Module({
-  imports: [ConfigModule.forRoot({isGlobal: true}), PrismaModule],
+  imports: [
+    ConfigModule.forRoot({isGlobal: true}), 
+    PrismaModule],
   controllers: [AppController],
   providers: [AppService, UserRepository],
 })
